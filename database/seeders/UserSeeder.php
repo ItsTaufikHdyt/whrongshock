@@ -22,7 +22,11 @@ class UserSeeder extends Seeder
         $admin = User::create([
             'name' => 'Admin',
             'email' => 'admin@gmail.com',
-            'password' => bcrypt('admin123'), // ganti password sesuai kebutuhan
+            'number' => 'ADM-BSK-2025-0001', 
+            'password' => bcrypt('admin123'),
+            'district_id' => 1, 
+            'sub_district_id' => 1, 
+
         ]);
         $admin->assignRole($adminRole);
 
@@ -30,7 +34,10 @@ class UserSeeder extends Seeder
         $user = User::create([
             'name' => 'taufikhdyt',
             'email' => 'user@gmail.com',
-            'password' => bcrypt('user123'), // ganti password sesuai kebutuhan
+            'number' => 'BSK-2025-0001', 
+            'password' => bcrypt('user123'),
+            'district_id' => 1, 
+            'sub_district_id' => 2, 
         ]);
         $user->assignRole($userRole);
     }

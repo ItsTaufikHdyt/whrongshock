@@ -11,15 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('sub_districts', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('district_id')->unsigned();
             $table->string('name');
-            $table->string('email')->unique();
-            $table->string('password');
-            $table->bigInteger('balance')->default(0);
             $table->timestamps();
-        });
 
+            $table->foreign('district_id')->references('id')->on('districts')->onDelete('cascade');
+        });
     }
 
     /**
@@ -27,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('sub_districts');
     }
 };
