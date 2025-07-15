@@ -20,8 +20,12 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'number',
+        'district_id',
+        'sub_district_id',
         'email',
         'password',
+        'address',
         'balance',
     ];
 
@@ -46,6 +50,16 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function district()
+    {
+        return $this->belongsTo(District::class, 'district_id');
+    }
+
+    public function subDistrict()
+    {
+        return $this->belongsTo(SubDistrict::class, 'sub_district_id');
     }
 
 }

@@ -24,6 +24,8 @@ class UserSeeder extends Seeder
             'email' => 'admin@gmail.com',
             'number' => 'ADM-BSK-2025-0001', 
             'password' => bcrypt('admin123'),
+            'address' => 'Jl. Admin No. 1',
+            'balance' => 1000000, // contoh saldo awal
             'district_id' => 1, 
             'sub_district_id' => 1, 
 
@@ -36,6 +38,8 @@ class UserSeeder extends Seeder
             'email' => 'user@gmail.com',
             'number' => 'BSK-2025-0001', 
             'password' => bcrypt('user123'),
+            'address' => 'Jl. Admin No. 2',
+            'balance' => 1000000,
             'district_id' => 1, 
             'sub_district_id' => 2, 
         ]);

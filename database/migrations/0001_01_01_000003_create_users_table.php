@@ -20,7 +20,7 @@ return new class extends Migration
             $table->unsignedBigInteger('district_id'); 
             $table->unsignedBigInteger('sub_district_id'); 
             $table->string('address')->nullable();
-            $table->bigInteger('balance')->default(0);
+            $table->decimal('balance')->default(0);
             $table->timestamps();
 
             $table->foreign('district_id')->references('id')->on('districts')->onDelete('cascade');
