@@ -11,26 +11,21 @@ class WasteDepositItem extends Model // singular
     protected $table = 'waste_deposit_items';
 
     protected $fillable = [
-        'waste_deposit_id',
+        'deposit_id',
         'waste_item_id',
         'quantity',
-        'unit_price',
+        'subtotal',
         // 'total_price', // jika ingin auto, hapus dari fillable
     ];
 
-    public function wasteDeposit()
-    {
-        return $this->belongsTo(WasteDeposit::class, 'waste_deposit_id');
-    }
-
-    public function wasteItem()
+    public function item()
     {
         return $this->belongsTo(WasteItem::class, 'waste_item_id');
     }
 
-    // Accessor untuk total_price
-    public function getTotalPriceAttribute()
+    public function deposit()
     {
-        return $this->quantity * $this->unit_price;
+        return $this->belongsTo(WasteDeposit::class, 'waste_deposit_id');
     }
+
 }

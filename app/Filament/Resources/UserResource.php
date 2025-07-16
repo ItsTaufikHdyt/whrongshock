@@ -20,7 +20,8 @@ class UserResource extends Resource
 {
     protected static ?string $model = User::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-user-circle';
+    protected static ?string $navigationGroup = 'System';
 
     public static function form(Form $form): Form
     {
@@ -78,11 +79,6 @@ class UserResource extends Resource
                         ->label('Alamat')
                         ->required()
                         ->maxLength(255),
-                    Forms\Components\TextInput::make('balance')
-                        ->label('Saldo')
-                        ->numeric()
-                        ->required()
-                        ->prefix('Rp')
 
                 ]),
 

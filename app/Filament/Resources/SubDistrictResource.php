@@ -19,7 +19,8 @@ class SubDistrictResource extends Resource
     protected static ?string $model = SubDistrict::class;
     protected static ?string $pluralLabel = 'Kelurahan';
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-globe-americas';
+    protected static ?string $navigationGroup = 'System';
 
     public static function form(Form $form): Form
     {

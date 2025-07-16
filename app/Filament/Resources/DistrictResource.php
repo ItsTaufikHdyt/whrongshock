@@ -18,7 +18,8 @@ class DistrictResource extends Resource
     protected static ?string $model = District::class;
     protected static ?string $pluralLabel = 'Kecamatan';
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-globe-americas';
+    protected static ?string $navigationGroup = 'System';
 
     
 

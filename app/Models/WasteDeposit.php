@@ -10,33 +10,19 @@ class WasteDeposit extends Model
 
     protected $fillable = [
         'user_id',
-        'status',
-        'total_price',
+        'deposit_date',
+        'total_amount',
         // Add other fields as necessary
     ];
 
+    public function items()
+    {
+        return $this->hasMany(\App\Models\WasteDepositItem::class);
+    }
+
     public function user()
     {
-        return $this->belongsTo(User::class, 'user_id');
+        return $this->belongsTo(\App\Models\User::class);
     }
 
-    public function wasteDepositItems()
-    {
-        return $this->hasMany(WasteDepositItem::class, 'waste_deposit_id');
-    }
-
-    public function scopePending($query)
-    {
-        return $query->where('status', 'pending');
-    }
-
-    public function scopeCompleted($query)
-    {
-        return $query->where('status', 'completed');
-    }
-
-    public function scopeRejected($query)
-    {
-        return $query->where('status', 'rejected');
-    }
 }

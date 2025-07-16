@@ -9,9 +9,10 @@ class WasteItem extends Model
     protected $table = 'waste_items';
 
     protected $fillable = [
-        'name',
-        'description',
-        'unit_price',
+        'category',
+        'output',
+        'unit',
+        'price',
         // Tambahkan atribut lain sesuai kebutuhan
     ];
 

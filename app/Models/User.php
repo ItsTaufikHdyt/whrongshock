@@ -18,6 +18,8 @@ class User extends Authenticatable
      *
      * @var list<string>
      */
+
+    
     protected $fillable = [
         'name',
         'number',
@@ -25,8 +27,8 @@ class User extends Authenticatable
         'sub_district_id',
         'email',
         'password',
-        'address',
         'balance',
+        'address',
     ];
 
     /**
@@ -61,5 +63,11 @@ class User extends Authenticatable
     {
         return $this->belongsTo(SubDistrict::class, 'sub_district_id');
     }
+
+    public function wasteDeposits()
+    {
+        return $this->hasMany(WasteDeposit::class, 'user_id');
+    }
+    
 
 }
