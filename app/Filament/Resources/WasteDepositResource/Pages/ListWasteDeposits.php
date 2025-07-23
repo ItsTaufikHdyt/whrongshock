@@ -16,4 +16,7 @@ class ListWasteDeposits extends ListRecords
             Actions\CreateAction::make(),
         ];
     }
+
+    
+    
 }

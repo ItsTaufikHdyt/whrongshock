@@ -18,14 +18,13 @@ class WasteDepositItem extends Model // singular
         // 'total_price', // jika ingin auto, hapus dari fillable
     ];
 
-    public function item()
+    public function wasteDeposit()
     {
-        return $this->belongsTo(WasteItem::class, 'waste_item_id');
+        return $this->belongsTo(WasteDeposit::class);
     }
 
-    public function deposit()
+    public function wasteItem()
     {
-        return $this->belongsTo(WasteDeposit::class, 'waste_deposit_id');
+        return $this->belongsTo(WasteItem::class);
     }
-
 }

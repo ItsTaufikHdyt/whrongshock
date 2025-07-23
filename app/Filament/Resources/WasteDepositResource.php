@@ -65,6 +65,8 @@ class WasteDepositResource extends Resource
                                 $wasteItem = WasteItem::find($state);
                                 $quantity = $get('quantity') ?? 0;
                                 $subtotal = $wasteItem ? $wasteItem->price * $quantity : 0;
+                                $price = $wasteItem?->price ?? 0;
+                                $set('price', $price);
                                 $set('subtotal', $subtotal);
                             }),
 
@@ -78,6 +80,10 @@ class WasteDepositResource extends Resource
                                 $subtotal = $wasteItem ? $wasteItem->price * ($state ?? 0) : 0;
                                 $set('subtotal', $subtotal);
                             }),
+
+                        Forms\Components\TextInput::make('price')
+                            ->label('Harga (Rp)')
+                            ->disabled(),
 
                         Forms\Components\TextInput::make('subtotal')
                             ->label('Subtotal (Rp)')
@@ -151,8 +157,5 @@ class WasteDepositResource extends Resource
         ];
     }
 
-    protected static function afterSave(Model $record): void
-    {
-        
-    }
+    protected static function afterSave(Model $record): void {}
 }
