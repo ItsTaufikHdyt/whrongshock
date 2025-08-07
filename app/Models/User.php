@@ -29,6 +29,7 @@ class User extends Authenticatable
         'password',
         'balance',
         'address',
+        'image',
     ];
 
     /**
@@ -53,6 +54,7 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+    
 
     public function district()
     {

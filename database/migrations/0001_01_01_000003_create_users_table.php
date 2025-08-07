@@ -21,6 +21,7 @@ return new class extends Migration
             $table->unsignedBigInteger('sub_district_id'); 
             $table->string('address')->nullable();
             $table->bigInteger('balance')->default(0);
+            $table->string('image')->nullable();
             $table->timestamps();
 
             $table->foreign('district_id')->references('id')->on('districts')->onDelete('cascade');

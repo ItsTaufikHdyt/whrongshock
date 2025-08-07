@@ -79,6 +79,9 @@ class UserResource extends Resource
                         ->label('Alamat')
                         ->required()
                         ->maxLength(255),
+                    Forms\Components\FileUpload::make('image')
+                            ->required()
+                            ->image(),
 
                 ]),
 
@@ -93,6 +96,9 @@ class UserResource extends Resource
                     ->label('Nama')
                     ->sortable()
                     ->searchable(),
+                Tables\Columns\ImageColumn::make('image')
+                    ->label('Foto Profil')
+                    ->circular(),
                 Tables\Columns\TextColumn::make('number')
                     ->label('ID Pengguna')
                     ->sortable()
