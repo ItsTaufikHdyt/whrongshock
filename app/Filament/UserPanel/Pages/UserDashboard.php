@@ -14,7 +14,7 @@ class UserDashboard extends Page
     protected static string $view = 'filament.user-panel.pages.user-dashboard';
     protected static ?string $title = 'Dashboard';
     protected static ?string $navigationGroup = 'User Area';
-    protected static ?int $navigationSort = 0;
+    protected static ?int $navigationSort = 1;
 
     public $user;
     public $transactions;
