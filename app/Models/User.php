@@ -19,7 +19,7 @@ class User extends Authenticatable
      * @var list<string>
      */
 
-    
+
     protected $fillable = [
         'name',
         'number',
@@ -54,7 +54,7 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
-    
+
 
     public function district()
     {
@@ -70,6 +70,5 @@ class User extends Authenticatable
     {
         return $this->hasMany(WasteDeposit::class, 'user_id');
     }
-    
 
 }

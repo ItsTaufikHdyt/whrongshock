@@ -6,7 +6,7 @@ services:
     # app
     ####################################################################################################
     app:
-        container_name: whrongshock_app
+        container_name: wrongshock_app
         build: 
             context: .docker/php
             args:
@@ -18,13 +18,13 @@ services:
         volumes:
             - .:/var/www:cached
         networks:
-            - whrongshock
+            - wrongshock
 
     ####################################################################################################
     # Nginx
     ####################################################################################################
     nginx:
-        container_name: whrongshock_nginx
+        container_name: wrongshock_nginx
         image: nginx
         ports:
             - 80:80
@@ -35,13 +35,13 @@ services:
         depends_on:
             - app
         networks:
-            - whrongshock
+            - wrongshock
 
     ####################################################################################################
     # DATABASE (MySQL)
     ####################################################################################################
     db:
-        container_name: whrongshock_mysql
+        container_name: wrongshock_mysql
         image: mysql
         ports:
             - 3306:3306
@@ -53,22 +53,22 @@ services:
         env_file:
             - db.env
         networks:
-            - whrongshock
+            - wrongshock
     ####################################################################################################
     # Adminer
     ####################################################################################################
     adminer:
-        container_name: whrongshock_adminer
+        container_name: wrongshock_adminer
         image: adminer
         ports:
             - "8080:8080"
         depends_on:
             - db
         networks:
-            - whrongshock
+            - wrongshock
 
 networks:
-  whrongshock:
+  wrongshock:
     driver: bridge
     
     # ####################################################################################################
