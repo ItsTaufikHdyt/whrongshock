@@ -143,8 +143,18 @@
           </div>
 
           <div class="mt-4">
-            <button class="btn btn-contact">Masuk</button>
-            <button class="btn btn-outline-contact">Hubungi Kami</button>
+            <div class="dropdown d-inline">
+                <button class="btn btn-contact dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Masuk
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="{{ url('admin') }}">Masuk sebagai Admin</a></li>
+                    <li><a class="dropdown-item" href="{{ url('user') }}">Masuk sebagai User</a></li>
+                </ul>
+            </div>
+            <a class="btn btn-outline-contact" href="https://wa.me/6281234567890" target="_blank" rel="noopener">
+                Hubungi Kami
+            </a>
           </div>
         </div>
         <div class="col-lg-6">
@@ -216,7 +226,7 @@
           <div class="info-card">
             <h5>"Pengelolaan Sampah Terkini melalui Reduce, Reuse, Recycle (3R) di Bontang"</h5>
             <div class="author-info">
-              <img src="{{asset('assets/image/avatar.png')}}" alt="Writer" class="author-avatar">
+              <img src="{{asset('assets/image/woman.png')}}" alt="Writer" class="author-avatar">
               <div class="author-details">
                 <h6>Ibu Siti</h6>
                 <p>IRT</p>
@@ -229,7 +239,7 @@
           <div class="info-card">
             <h5>"Peran Pemerintah Kota Bontang dalam Pengelolaan Sampah di TPA"</h5>
             <div class="author-info">
-              <img src="{{asset('assets/image/avatar.png')}}" alt="Writer" class="author-avatar">
+              <img src="{{asset('assets/image/man.png')}}" alt="Writer" class="author-avatar">
               <div class="author-details">
                 <h6>Pak Handoko</h6>
                 <p>Karyawan Swasta</p>
@@ -242,7 +252,7 @@
           <div class="info-card">
             <h5>"Kisah Ibu Rahmawati dalam Mengelola Persampahan di Guntung"</h5>
             <div class="author-info">
-              <img src="{{asset('assets/image/avatar.png')}}" alt="Writer" class="author-avatar">
+              <img src="{{asset('assets/image/woman.png')}}" alt="Writer" class="author-avatar">
               <div class="author-details">
                 <h6>Ibu Rahmawati</h6>
                 <p>IRT</p>

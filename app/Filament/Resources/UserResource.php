@@ -85,8 +85,9 @@ class UserResource extends Resource
                         ->required()
                         ->image(),
                     Forms\Components\Select::make('roles')
+                        ->required()
                         ->label('Role')
-                        ->relationship('roles', 'name') 
+                        ->relationship('roles', 'name')
                         ->preload()
                         ->searchable()
 

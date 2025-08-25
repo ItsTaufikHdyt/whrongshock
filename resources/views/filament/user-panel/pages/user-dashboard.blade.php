@@ -51,7 +51,9 @@
                     </div>
                     <!-- Box Grafik -->
                     <div class="bg-white shadow rounded-xl p-4 flex-1 flex items-center justify-center text-gray-400">
-                        <canvas id="wastePieChart" width="250" height="250"></canvas>
+                        <div style="max-height:320px; overflow-y:auto; width:100%;">
+                            <canvas id="wastePieChart" width="250" height="250"></canvas>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -159,7 +161,13 @@
                 plugins: {
                     legend: {
                         display: true,
-                        position: 'bottom'
+                        position: 'bottom',
+                        labels: {
+                            boxWidth: 16,
+                            font: { size: 12 },
+                            padding: 10,
+                        },
+                        maxHeight: 120 // Batasi tinggi legend agar scrollable
                     }
                 }
             }
