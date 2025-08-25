@@ -57,8 +57,32 @@ services:
         ports:
             - "8080:8080" # akses lokal; di VPS batasi firewall/IP
         networks:
-            - wrongshock
+            - wrongshock     
+    # caddy:
+    #     image: caddy:2.8
+    #     container_name: wrongshock_caddy
+    #     restart: unless-stopped
+    #     ports:
+    #         - "80:80"
+    #         - "443:443"
+    #     environment:
+    #     # ganti email kamu untuk notifikasi/Let's Encrypt
+    #     ACME_EMAIL: admin@wrongshock.biz.id
+    #     # domain utama (bisa isi lewat .env juga)
+    #     PRIMARY_DOMAIN: wrongshock.biz.id
+    #     volumes:
+    #         - ./.docker/caddy/Caddyfile:/etc/caddy/Caddyfile:ro
+    #         - caddy_data:/data
+    #         - caddy_config:/config
+    #     depends_on:
+    #         - nginx
+    #     networks:
+    #         - wrongshock
 
+volumes:
+  caddy_data:
+  caddy_config:
+  
 networks:
     wrongshock:
         driver: bridge

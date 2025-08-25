@@ -15,6 +15,8 @@ use Filament\Tables\Table;
 use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 
 class UserResource extends Resource
 {
@@ -52,10 +54,10 @@ class UserResource extends Resource
                             Forms\Components\TextInput::make('password')
                                 ->label('Password')
                                 ->password()
-                                ->required(fn ($livewire) => $livewire instanceof \Filament\Resources\Pages\CreateRecord)
+                                ->required(fn($livewire) => $livewire instanceof \Filament\Resources\Pages\CreateRecord)
                                 ->nullable()
-                                ->dehydrated(fn ($state) => filled($state))
-                                ->dehydrateStateUsing(fn ($state) => filled($state) ? bcrypt($state) : null),
+                                ->dehydrated(fn($state) => filled($state))
+                                ->dehydrateStateUsing(fn($state) => filled($state) ? bcrypt($state) : null),
                         ]),
 
                     Forms\Components\Grid::make(2)
@@ -80,8 +82,14 @@ class UserResource extends Resource
                         ->required()
                         ->maxLength(255),
                     Forms\Components\FileUpload::make('image')
-                            ->required()
-                            ->image(),
+                        ->required()
+                        ->image(),
+                    Forms\Components\Select::make('roles')
+                        ->label('Role')
+                        ->relationship('roles', 'name') 
+                        ->preload()
+                        ->searchable()
+
 
                 ]),
 
@@ -118,6 +126,11 @@ class UserResource extends Resource
                 Tables\Columns\TextColumn::make('address')
                     ->label('Alamat')
                     ->formatStateUsing(fn($state) => Str::limit($state, 30)),
+                Tables\Columns\TagsColumn::make('roles.name')
+                    ->label('Role')
+                    ->sortable()
+                    ->searchable(),
+
                 Tables\Columns\TextColumn::make('balance')
                     ->label('Saldo')
                     ->sortable()
