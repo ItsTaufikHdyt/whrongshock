@@ -48,16 +48,10 @@
                 <div class="bg-white rounded-xl overflow-hidden shadow flex-1 p-4 flex flex-col justify-between">
                     <!-- Tombol Aksi -->
                     <div class="flex justify-between items-center mb-4">
-                        <button
-                            class="bg-lime-600/10 text-lime-800 text-xs px-3 py-2 rounded-lg flex items-center gap-1">
-                            <x-heroicon-o-adjustments-horizontal class="w-4 h-4" />
-                            Juni - Juli 2025
-                        </button>
                     </div>
                     <!-- Box Grafik -->
                     <div class="bg-white shadow rounded-xl p-4 flex-1 flex items-center justify-center text-gray-400">
-                        <img src="{{ asset('assets/image/user.png') }}" style="height: 250px; width:250px"
-                            class=" object-cover">
+                        <canvas id="wastePieChart" width="250" height="250"></canvas>
                     </div>
                 </div>
             </div>
@@ -121,4 +115,54 @@
                 </table>
             </div>
         </div>
+    </div>
+
+    {{-- Tambahkan CDN Chart.js dan script grafik sebelum penutup x-filament::page --}}
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // Ambil data kategori dan jumlah dari PHP
+        @php
+            $wastePie = [];
+            foreach ($wasteHistory as $deposit) {
+                foreach ($deposit->items as $item) {
+                    $cat = $item->wasteItem->category ?? 'Lainnya';
+                    if (!isset($wastePie[$cat])) $wastePie[$cat] = 0;
+                    $wastePie[$cat] += $item->quantity;
+                }
+            }
+            $totalWaste = array_sum($wastePie);
+            $wastePiePercent = [];
+            foreach ($wastePie as $cat => $qty) {
+                $wastePiePercent[$cat] = $totalWaste > 0 ? round(($qty / $totalWaste) * 100, 1) : 0;
+            }
+        @endphp
+        const pieLabelsRaw = {!! json_encode(array_keys($wastePie)) !!};
+        const pieData = {!! json_encode(array_values($wastePie)) !!};
+        const piePercent = {!! json_encode(array_values($wastePiePercent)) !!};
+
+        // Gabungkan label dengan persentase
+        const pieLabels = pieLabelsRaw.map((label, idx) => `${label} (${piePercent[idx]}%)`);
+
+        const ctx = document.getElementById('wastePieChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: pieLabels,
+                datasets: [{
+                    data: pieData,
+                    backgroundColor: [
+                        '#4ade80', '#fbbf24', '#60a5fa', '#f87171', '#a78bfa', '#34d399', '#f472b6'
+                    ],
+                }]
+            },
+            options: {
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: 'bottom'
+                    }
+                }
+            }
+        });
+    </script>
 </x-filament::page>
